@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Approval Predictor</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      text-align: left;
+      font-weight: bold;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      background: #3498db;
+      color: white;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Loan Approval Predictor</h2>
+
+    <label for="credit">Credit History (1 = Yes, 0 = No):</label>
+    <select id="credit">
+      <option value="1">1 - Has Credit History</option>
+      <option value="0">0 - No Credit History</option>
+    </select>
+
+    <label for="income">Applicant Income:</label>
+    <input type="number" id="income" placeholder="e.g. 5000">
+
+    <label for="loan">Loan Amount:</label>
+    <input type="number" id="loan" placeholder="e.g. 120">
+
+    <label for="property">Property Area:</label>
+    <select id="property">
+      <option value="Urban">Urban</option>
+      <option value="Semiurban">Semiurban</option>
+      <option value="Rural">Rural</option>
+    </select>
+
+    <button onclick="predict()">Predict</button>
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function predict() {
+      const credit = parseInt(document.getElementById("credit").value);
+      const income = parseFloat(document.getElementById("income").value);
+      const loan = parseFloat(document.getElementById("loan").value);
+      const property = document.getElementById("property").value;
+
+      if (isNaN(credit) || isNaN(income) || isNaN(loan)) {
+        document.getElementById("output").innerHTML = "⚠ Please fill in all fields with valid values.";
+        return;
+      }
+
+      // Simple rule-based model (inspired by your dataset patterns)
+      let score = 0;
+
+      if (credit === 1) score += 3;
+      if (income > 5000) score += 2;
+      if (loan < 200) score += 2;
+      if (property === "Semiurban") score += 1;
+
+      let prediction = score >= 5 ? "✅ Loan Approved" : "❌ Loan Rejected";
+
+      document.getElementById("output").innerHTML = `Result: <strong>${prediction}</strong>`;
+    }
+  </script>
+</body>
+</html>
