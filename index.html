@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Loan Approval Predictor (Group 5) </title>
+  <title>Loan Approval Predictor ❤️Group 5❤️ </title>
   <style>
     html, body {
       margin: 0;
@@ -65,7 +65,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Loan Approval Predictor ❤️Group 5❤️ </h2>
+    <h2>Loan Approval Predictor ??❤️Group 5❤️ </h2>
 
     <label for="credit">Credit History (1 = Yes, 0 = No):</label>
     <select id="credit">
@@ -82,7 +82,7 @@
     <label for="property">Property Area:</label>
     <select id="property">
       <option value="Urban">Urban</option>
-      <option value="Semiurban">Semiurban</option>
+      <option value="Semiurban">Semi Urban</option>
       <option value="Rural">Rural</option>
     </select>
 
@@ -111,7 +111,7 @@
       if (loan < 200) score += 2;
       if (property === "Semiurban") score += 1;
 
-      let prediction = score >= 5 ? "✅ Loan Approved" : "❌ Loan Rejected";
+      let prediction = score >= 5 ? "✅ Loan Approved - Congrate!" : "❌ Loan Rejected - Please Work Hard";
 
       document.getElementById("output").innerHTML = `Result: <strong>${prediction}</strong>`;
     }
